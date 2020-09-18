@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <link rel="stylesheet" type="text/css" href="css/table-style.css"/>
+            <h3>JSF Login Logout</h3>
+            <h:outputText value="Username" />
+            <h:inputText id="username" value="#{login.inputuser}" />
+            <h:message for="username"></h:message>
+            <br />
+
+            <h:outputText value="Password" />
+            <h:inputSecret id="password" value="#{login.inputpassword}"/>
+            <h:message for="password"></h:message>
+            <br />
+
+            <h:commandButton action="#{login.getPath1()}" value="Login"></h:commandButton>
+            <br />
+            <br />
+            <h:outputLink value="#{request.contextPath}/faces/secured/welcome.xhtml">
+                <h:outputText value="Secure Welcome Page" />
+            </h:outputLink>
+
+            <h:dataTable value="#{login.data}" var="o"
+                         styleClass="order-table"
+                         headerClass="order-table-header"
+                         rowClasses="order-table-odd-row,order-table-even-row"
+                         >
+
+                <h:column>
+                    <!-- column header -->
+                    <f:facet name="header">ID</f:facet>
+                    <!-- row record -->
+                    #{o.ID}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                        #{o.name}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Datum und Uhrzeit</f:facet>
+                        #{o.datumUhrzeit}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Nachricht</f:facet>
+                        #{o.nachrich}
+                </h:column>
+
+            </h:dataTable>
+
+        </h:form>
+    </body>
+</html>

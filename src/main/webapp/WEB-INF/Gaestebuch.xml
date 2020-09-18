@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<gaestebuch name ="BBB" > 
+    <eintrag>  
+        <ID>0</ID> 
+        <Name>Grudrun</Name>
+        <DatumUhrzeit>16.09.2020 5:55</DatumUhrzeit>
+        <Nachricht>Hallo</Nachricht>
+    </eintrag>
+    <eintrag>
+        <ID>1</ID> 
+        <Name>Fabian</Name>
+        <DatumUhrzeit>16.09.2020 9:52</DatumUhrzeit>
+        <Nachricht>Sollte nicht</Nachricht>
+    </eintrag>
+    <eintrag>
+        <ID>2</ID> 
+        <Name>Yoenas</Name>
+        <DatumUhrzeit>16.09.2020 19:52</DatumUhrzeit>
+        <Nachricht>Salam</Nachricht>
+    </eintrag>
+</gaestebuch>
