@@ -7,6 +7,7 @@ package ch.bbbaden.LA_133_9960_Login;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -22,15 +23,15 @@ import org.jdom2.JDOMException;
 @SessionScoped
 public class LoginUserBean implements Serializable {
 
-    
     private final String path1 = "/secured/welcome.xhtml";
     private String inputuser;
     private String inputpassword;
     private boolean loggedIn = false;
     private String doLogout = "";
+    private String eintrag;
     private User user;
     private List<Eintrag> data;
-    LoginDAO ldao = new LoginDAO(); 
+    LoginDAO ldao = new LoginDAO();
 
     /**
      * Creates a new instance of LoginUserBean
@@ -58,13 +59,21 @@ public class LoginUserBean implements Serializable {
         return loggedIn;
     }
 
+    public String getEintrag() {
+        return eintrag;
+    }
+
+    public void setEintrag(String eintrag) {
+        this.eintrag = eintrag;
+    }
+    
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }
 
     public String DoLogout() {
         this.loggedIn = false;
-        
+
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
         //Controller erzeugen
@@ -78,22 +87,21 @@ public class LoginUserBean implements Serializable {
 
     public String getPath1() {
         this.user = ldao.check(inputuser, inputpassword);
-        
+
         if (this.user != null) {
             this.loggedIn = true;
             return path1;
         }
-        return "/faces/start.xhtml";   
+        return "/faces/start.xhtml";
     }
 
     public List<Eintrag> getData() throws JDOMException, IOException {
-        return ldao.getData();   
+        return this.ldao.getData();
     }
-    
-    public void eintagen() throws IOException{
-        ldao.setEintrag();
+
+    public void eintagen() throws IOException {
+        ldao.setEintrag(this.getEintrag(), inputuser);
+        this.setEintrag("");
     }
-        
-    
 
 }

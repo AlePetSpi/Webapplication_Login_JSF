@@ -33,34 +33,25 @@ and open the template in the editor.
                 <h:outputText value="Secure Welcome Page" />
             </h:outputLink>
 
-            <h:dataTable value="#{login.data}" var="o"
-                         styleClass="order-table"
-                         headerClass="order-table-header"
-                         rowClasses="order-table-odd-row,order-table-even-row"
-                         >
-
+            <h:dataTable value="#{login.data}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
                 <h:column>
                     <!-- column header -->
                     <f:facet name="header">ID</f:facet>
                     <!-- row record -->
                     #{o.ID}
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">Name</f:facet>
                         #{o.name}
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">Datum und Uhrzeit</f:facet>
                         #{o.datumUhrzeit}
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">Nachricht</f:facet>
                         #{o.nachrich}
                 </h:column>
-
             </h:dataTable>
 
         </h:form>

@@ -11,15 +11,42 @@ and open the template in the editor.
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     </head>
     <body>
-         <h:form>
+        <h:form>
+            <link rel="stylesheet" type="text/css" href="css/table-style.css"/>
             <h3>Welcome</h3>
             <h:outputText value="Welcome, #{login.inputuser}!" />
             <br />
-            <h:commandButton action="#{login.eintagen()}" value="Eintragen"></h:commandButton>
+            <h:outputLabel for="eintrag">
+                <h:outputText value="Eintrag:"/>
+            </h:outputLabel>
+            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.eintrag}"/> 
+            <h:commandButton action="#{login.eintagen()}" value="Eintragen"/>
             <br />
             <h:commandButton action="#{login.doLogout}" value="Logout"></h:commandButton>
+
+            <h:dataTable value="#{login.data}" var="o" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+                <h:column>
+                    <!-- column header -->
+                    <f:facet name="header">ID</f:facet>
+                    <!-- row record -->
+                    #{o.ID}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                        #{o.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Datum und Uhrzeit</f:facet>
+                        #{o.datumUhrzeit}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nachricht</f:facet>
+                        #{o.nachrich}
+                </h:column>
+            </h:dataTable>
         </h:form>
     </body>
 </html>

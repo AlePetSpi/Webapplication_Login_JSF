@@ -8,7 +8,10 @@ package ch.bbbaden.LA_133_9960_Login;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +33,9 @@ public class LoginDAO {
     private SAXBuilder builder;
     private File xmlFile;
     private File xmlFile1;
-    private List<Eintrag> data = new ArrayList<>();
+    private int aufzaehlungid;
+    private String DatumUhrzeit;
+    private final List<Eintrag> data = new ArrayList<>();
 
     public LoginDAO() {
         String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -58,12 +63,11 @@ public class LoginDAO {
         } catch (IOException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("flop");
+        System.out.println("lol");
         return null;
     }
 
-    public List<Eintrag> getData() throws JDOMException, IOException {
-
+    public List getData() throws JDOMException, IOException {
         Document document = (Document) builder.build(xmlFile1);
         Element rootNode = document.getRootElement();
         List list = rootNode.getChildren("eintrag");
@@ -75,27 +79,48 @@ public class LoginDAO {
         return data;
     }
 
-    public void setEintrag() throws IOException {
-        Element root = new Element("eintrag");
-        Element ele1 = new Element("ID");
-        Element ele2 = new Element("Name");
-        Element ele3 = new Element("DatumUhrzeit");
-        Element ele4 = new Element("Nachricht");
-        ele1.setText("Hello!");
-        ele2.setText("World!");
-        ele3.setText("asd!");
-        ele4.setText("123!");
-        root.addContent(ele1);
-        root.addContent(ele2);
-        root.addContent(ele3);
-        root.addContent(ele4);
-        root.setAttribute("date", "5.9.02");
-        Document doc = new Document(root);
-        //Schreiben eines formatierten XML-Dokuments
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        xmlOutput.output(doc, new FileWriter(xmlFile1));
-
+    private String getDatumUhrzeit() {
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String datum = formatter.format(today);
+        formatter = new SimpleDateFormat("HH:mm:ss");
+        String zeit = formatter.format(today);
+        return datum + " " + zeit;
     }
 
+    public int getAufzaehlungid(List list,  Document documen, Element rootNode) {
+        //Vergleichswert setzen
+        int aufzaehlungid = Integer.MAX_VALUE;
+        Element node = (Element) list.get(0);
+        aufzaehlungid = Integer.parseInt(node.getChildText("ID"));
+        for (int i = 1; i < list.size(); i++) {
+            node = (Element) list.get(i);
+            if (aufzaehlungid < Integer.parseInt(node.getChildText("ID"))) {
+                aufzaehlungid = Integer.parseInt(node.getChildText("ID"));
+            }
+        }
+        return aufzaehlungid;
+    }
+
+    public boolean setEintrag(String e, String u) throws IOException {
+        try {
+            Document document = (Document) builder.build(xmlFile1);
+            Element rootNode = document.getRootElement();
+            Element eintrag = new Element("eintrag");
+            List list = rootNode.getChildren("eintrag");
+            eintrag.addContent(new Element("ID").setText("" + getAufzaehlungid(list, document, rootNode)));
+            eintrag.addContent(new Element("Name").setText(u));
+            eintrag.addContent(new Element("DatumUhrzeit").setText(getDatumUhrzeit()));
+            eintrag.addContent(new Element("Nachricht").setText(e));
+            rootNode.addContent(eintrag);
+            XMLOutputter xmlOutput = new XMLOutputter();
+            xmlOutput.setFormat(Format.getPrettyFormat());
+            xmlOutput.output(document, new FileWriter(xmlFile1));
+
+            return true;
+        } catch (JDOMException | IOException ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }

@@ -22,6 +22,23 @@ public class Eintrag {
         this.nachrich = nachrich;
     }
     
+    /*public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDatumUhrzeit(String DatumUhrzeit) {
+        this.DatumUhrzeit = DatumUhrzeit;
+    }
+
+    public void setNachrich(String nachrich) {
+        this.nachrich = nachrich;
+    }
+    */
+    
     public int getID() {
         return ID;
     }
@@ -38,7 +55,10 @@ public class Eintrag {
         return nachrich;
     }
 
-    
+    @Override
+    public String toString(){
+    return ID+name+nachrich+DatumUhrzeit;
+    }
     
     
 }
