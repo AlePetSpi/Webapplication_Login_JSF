@@ -54,7 +54,6 @@ public class LoginDAO {
             for (int i = 0; i < list.size(); i++) {
                 Element node = (Element) list.get(i);
                 if (node.getChildText("Name").equals(user) && node.getChildText("Passwort").equals(password)) {
-
                     return new User(user, Integer.parseInt(node.getChildText("ID")));
                 }
             }
@@ -88,7 +87,7 @@ public class LoginDAO {
         return datum + " " + zeit;
     }
 
-    public int getAufzaehlungid(List list,  Document documen, Element rootNode) {
+    public int getAufzaehlungid(List list, Document documen, Element rootNode) {
         //Vergleichswert setzen
         int aufzaehlungid = Integer.MAX_VALUE;
         Element node = (Element) list.get(0);
@@ -99,7 +98,7 @@ public class LoginDAO {
                 aufzaehlungid = Integer.parseInt(node.getChildText("ID"));
             }
         }
-        return aufzaehlungid;
+        return aufzaehlungid + 1;
     }
 
     public boolean setEintrag(String e, String u) throws IOException {
