@@ -50,10 +50,10 @@ public class LoginDAO {
         try {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
-            List list = rootNode.getChildren("Benuetzer");
+            List list = rootNode.getChildren("User");
             for (int i = 0; i < list.size(); i++) {
                 Element node = (Element) list.get(i);
-                if (node.getChildText("Name").equals(user) && node.getChildText("Passwort").equals(password)) {
+                if (node.getChildText("Name").equals(user) && node.getChildText("Password").equals(password)) {
                     return new User(user, Integer.parseInt(node.getChildText("ID")));
                 }
             }
@@ -70,10 +70,10 @@ public class LoginDAO {
         data = new ArrayList<Input>();
         Document document = (Document) builder.build(xmlFile1);
         Element rootNode = document.getRootElement();
-        List list = rootNode.getChildren("eintrag");
+        List list = rootNode.getChildren("guestinput");
         for (int i = 0; i < list.size(); i++) {
             Element node = (Element) list.get(i);
-            data.add(new Input(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DatumUhrzeit"), node.getChildText("Nachricht")));
+            data.add(new Input(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DateTime"), node.getChildText("Message")));
         }
         System.out.println("flop");
         return data;
@@ -106,13 +106,13 @@ public class LoginDAO {
         try {
             Document document = (Document) builder.build(xmlFile1);
             Element rootNode = document.getRootElement();
-            Element eintrag = new Element("eintrag");
-            List list = rootNode.getChildren("eintrag");
-            eintrag.addContent(new Element("ID").setText("" + getAufzaehlungid(list, document, rootNode)));
-            eintrag.addContent(new Element("Name").setText(u));
-            eintrag.addContent(new Element("DatumUhrzeit").setText(getDatumUhrzeit()));
-            eintrag.addContent(new Element("Nachricht").setText(e));
-            rootNode.addContent(eintrag);
+            Element input = new Element("guestinput");
+            List list = rootNode.getChildren("guestinput");
+            input.addContent(new Element("ID").setText("" + getAufzaehlungid(list, document, rootNode)));
+            input.addContent(new Element("Name").setText(u));
+            input.addContent(new Element("DateTime").setText(getDatumUhrzeit()));
+            input.addContent(new Element("Message").setText(e));
+            rootNode.addContent(input);
             XMLOutputter xmlOutput = new XMLOutputter();
             xmlOutput.setFormat(Format.getPrettyFormat());
             xmlOutput.output(document, new FileWriter(xmlFile1));

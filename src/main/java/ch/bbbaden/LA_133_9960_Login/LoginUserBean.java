@@ -100,7 +100,7 @@ public class LoginUserBean implements Serializable {
         return data;
     }
 
-    public void eintagen() throws IOException {
+    public void textinput() throws IOException {
         ldao.setInput(this.getinput(), inputuser);
         this.setinput("");
     }

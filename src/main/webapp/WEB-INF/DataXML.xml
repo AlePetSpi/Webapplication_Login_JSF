@@ -5,21 +5,21 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<Benuetzern name ="BBB" > 
-    <Benuetzer>  
+<Users name ="BBB" > 
+    <User>  
         <ID>0</ID> 
         <Name>Grudrun</Name>
-        <Passwort>Ihlhuelb</Passwort>
-    </Benuetzer>
-    <Benuetzer>
+        <Password>Ihlhuelb</Password>
+    </User>
+    <User>
         <ID>1</ID> 
         <Name>ElonMusk</Name>
-        <Passwort>S3XY</Passwort>
-    </Benuetzer>
-    <Benuetzer>
+        <Password>S3XY</Password>
+    </User>
+    <User>
         <ID>2</ID> 
         <Name>ab</Name>
-        <Passwort>12</Passwort>
-    </Benuetzer>
-</Benuetzern>
+        <Password>12</Password>
+    </User>
+</Users>
 
