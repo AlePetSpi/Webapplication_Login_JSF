@@ -12,17 +12,20 @@ and open the template in the editor.
         <Name>Grudrun</Name>
         <DateTime>16.09.2020 5:55</DateTime>
         <Message>Hallo</Message>
+        <plz>5436</plz>
     </guestinput>
     <guestinput>
         <ID>1</ID> 
         <Name>Fabian</Name>
         <DateTime>16.09.2020 9:52</DateTime>
         <Message>Sollte nicht</Message>
+        <plz>5410</plz>
     </guestinput>
     <guestinput>
         <ID>2</ID> 
         <Name>Yoenas</Name>
         <DateTime>16.09.2020 19:52</DateTime>
         <Message>Salam</Message>
+        <plz>1654</plz>
     </guestinput>
 </guestbook>

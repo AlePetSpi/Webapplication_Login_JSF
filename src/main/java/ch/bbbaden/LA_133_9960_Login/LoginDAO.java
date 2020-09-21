@@ -73,7 +73,7 @@ public class LoginDAO {
         List list = rootNode.getChildren("guestinput");
         for (int i = 0; i < list.size(); i++) {
             Element node = (Element) list.get(i);
-            data.add(new Input(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DateTime"), node.getChildText("Message")));
+            data.add(new Input(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DateTime"), node.getChildText("Message"), node.getChildText("plz")));
         }
         System.out.println("flop");
         return data;
@@ -102,17 +102,17 @@ public class LoginDAO {
         return aufzaehlungid + 1;
     }
 
-    public boolean setInput(String e, String u) throws IOException {
+    public boolean setInput(String e, String u, int plz) throws IOException {
         try {
             Document document = (Document) builder.build(xmlFile1);
             Element rootNode = document.getRootElement();
-            Element input = new Element("guestinput");
+            Element eintrag = new Element("guestinput");
             List list = rootNode.getChildren("guestinput");
-            input.addContent(new Element("ID").setText("" + getAufzaehlungid(list, document, rootNode)));
-            input.addContent(new Element("Name").setText(u));
-            input.addContent(new Element("DateTime").setText(getDatumUhrzeit()));
-            input.addContent(new Element("Message").setText(e));
-            rootNode.addContent(input);
+            eintrag.addContent(new Element("ID").setText("" + getAufzaehlungid(list, document, rootNode)));
+            eintrag.addContent(new Element("Name").setText(u));
+            eintrag.addContent(new Element("DateTime").setText(getDatumUhrzeit()));
+            eintrag.addContent(new Element("Message").setText(e));
+            rootNode.addContent(eintrag);
             XMLOutputter xmlOutput = new XMLOutputter();
             xmlOutput.setFormat(Format.getPrettyFormat());
             xmlOutput.output(document, new FileWriter(xmlFile1));

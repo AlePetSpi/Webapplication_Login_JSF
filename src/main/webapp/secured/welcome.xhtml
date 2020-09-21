@@ -20,12 +20,12 @@ and open the template in the editor.
             <h:outputText value="Welcome, #{login.inputuser}!" />
             <br />
             <h:outputText value="Textinput:"/>
-            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.textinput()}"/> 
+            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.input}"/> 
             <br />
             <h:outputText value="PLZ"/>
-            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.textinput()}"/> 
+            <h:inputText id="plz" size="30" maxlength="40" required="true" value="#{login.plz}"/> 
             <br />
-            <h:commandButton action="#{login.textinput()}" value="Eintragen"/>
+            <h:commandButton action="#{login.textinput()}" value="Message"/>
             <br />
             <h:commandButton action="#{login.doLogout}" value="Logout"></h:commandButton>
 
@@ -47,6 +47,10 @@ and open the template in the editor.
                 <h:column>
                     <f:facet name="header">Message</f:facet>
                         #{o.nachrich}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PLZ</f:facet>
+                        #{o.plz}
                 </h:column>
             </h:dataTable>
         </h:form>

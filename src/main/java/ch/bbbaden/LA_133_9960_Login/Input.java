@@ -14,8 +14,9 @@ public class Input {
     private String name;
     private String DatumUhrzeit;
     private String nachrich;
-
-    public Input(int ID, String name, String DatumUhrzeit, String nachrich) {
+    private String plz;
+    
+    public Input(int ID, String name, String DatumUhrzeit, String nachrich, String plz) {
         this.ID = ID;
         this.name = name;
         this.DatumUhrzeit = DatumUhrzeit;
@@ -26,6 +27,10 @@ public class Input {
         return ID;
     }
 
+    public String getPlz() {
+        return plz;
+    }
+    
     public String getName() {
         return name;
     }
