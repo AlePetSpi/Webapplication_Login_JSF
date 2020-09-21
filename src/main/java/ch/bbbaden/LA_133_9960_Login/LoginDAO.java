@@ -35,7 +35,7 @@ public class LoginDAO {
     private File xmlFile1;
     private int aufzaehlungid;
     private String DatumUhrzeit;
-    private final List<Eintrag> data = new ArrayList<>();
+    private List<Input> data = new ArrayList<>();
 
     public LoginDAO() {
         String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -67,12 +67,13 @@ public class LoginDAO {
     }
 
     public List getData() throws JDOMException, IOException {
+        data = new ArrayList<Input>();
         Document document = (Document) builder.build(xmlFile1);
         Element rootNode = document.getRootElement();
         List list = rootNode.getChildren("eintrag");
         for (int i = 0; i < list.size(); i++) {
             Element node = (Element) list.get(i);
-            data.add(new Eintrag(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DatumUhrzeit"), node.getChildText("Nachricht")));
+            data.add(new Input(Integer.parseInt(node.getChildText("ID")), node.getChildText("Name"), node.getChildText("DatumUhrzeit"), node.getChildText("Nachricht")));
         }
         System.out.println("flop");
         return data;
@@ -92,7 +93,7 @@ public class LoginDAO {
         int aufzaehlungid = Integer.MAX_VALUE;
         Element node = (Element) list.get(0);
         aufzaehlungid = Integer.parseInt(node.getChildText("ID"));
-        for (int i = 1; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             node = (Element) list.get(i);
             if (aufzaehlungid < Integer.parseInt(node.getChildText("ID"))) {
                 aufzaehlungid = Integer.parseInt(node.getChildText("ID"));
@@ -101,7 +102,7 @@ public class LoginDAO {
         return aufzaehlungid + 1;
     }
 
-    public boolean setEintrag(String e, String u) throws IOException {
+    public boolean setInput(String e, String u) throws IOException {
         try {
             Document document = (Document) builder.build(xmlFile1);
             Element rootNode = document.getRootElement();

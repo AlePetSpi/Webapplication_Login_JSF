@@ -9,36 +9,19 @@ package ch.bbbaden.LA_133_9960_Login;
  *
  * @author Alexander
  */
-public class Eintrag {
+public class Input {
     private int ID;
     private String name;
     private String DatumUhrzeit;
     private String nachrich;
 
-    public Eintrag(int ID, String name, String DatumUhrzeit, String nachrich) {
+    public Input(int ID, String name, String DatumUhrzeit, String nachrich) {
         this.ID = ID;
         this.name = name;
         this.DatumUhrzeit = DatumUhrzeit;
         this.nachrich = nachrich;
     }
-    
-    /*public void setID(int ID) {
-        this.ID = ID;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDatumUhrzeit(String DatumUhrzeit) {
-        this.DatumUhrzeit = DatumUhrzeit;
-    }
-
-    public void setNachrich(String nachrich) {
-        this.nachrich = nachrich;
-    }
-    */
-    
     public int getID() {
         return ID;
     }

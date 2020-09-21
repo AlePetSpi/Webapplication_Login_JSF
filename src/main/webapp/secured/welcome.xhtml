@@ -15,14 +15,14 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-            <link rel="stylesheet" type="text/css" href="css/table-style.css"/>
+            <link rel="stylesheet" type="text/css" href="rescources/css/table-style.css"/>
             <h3>Welcome</h3>
             <h:outputText value="Welcome, #{login.inputuser}!" />
             <br />
             <h:outputLabel for="eintrag">
                 <h:outputText value="Eintrag:"/>
             </h:outputLabel>
-            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.eintrag}"/> 
+            <h:inputText id="eintrag" size="30" maxlength="40" required="true" value="#{login.eintagen()}"/> 
             <h:commandButton action="#{login.eintagen()}" value="Eintragen"/>
             <br />
             <h:commandButton action="#{login.doLogout}" value="Logout"></h:commandButton>

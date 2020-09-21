@@ -28,9 +28,9 @@ public class LoginUserBean implements Serializable {
     private String inputpassword;
     private boolean loggedIn = false;
     private String doLogout = "";
-    private String eintrag;
+    private String input;
     private User user;
-    private List<Eintrag> data;
+    private List<Input> data;
     LoginDAO ldao = new LoginDAO();
 
     /**
@@ -59,12 +59,12 @@ public class LoginUserBean implements Serializable {
         return loggedIn;
     }
 
-    public String getEintrag() {
-        return eintrag;
+    public String getinput() {
+        return input;
     }
 
-    public void setEintrag(String eintrag) {
-        this.eintrag = eintrag;
+    public void setinput(String input) {
+        this.input = input;
     }
     
     public void setLoggedIn(boolean loggedIn) {
@@ -95,13 +95,14 @@ public class LoginUserBean implements Serializable {
         return "/faces/start.xhtml";
     }
 
-    public List<Eintrag> getData() throws JDOMException, IOException {
-        return this.ldao.getData();
+    public List<Input> getData() throws JDOMException, IOException {
+        data = this.ldao.getData();
+        return data;
     }
 
     public void eintagen() throws IOException {
-        ldao.setEintrag(this.getEintrag(), inputuser);
-        this.setEintrag("");
+        ldao.setInput(this.getinput(), inputuser);
+        this.setinput("");
     }
 
 }
