@@ -30,7 +30,7 @@ public class LoginUserBean implements Serializable {
     private String inputuser;
     private String inputpassword;
     private boolean loggedIn = false;
-    private String doLogout = "";
+    private String doLogout = "/faces/start.xhtml";
     @Pattern(regexp = "[a-zA-Z0-9]+", message = "Please enter your text of the message correctly")
     @NotNull(message = "Please enter your text of the message")
     private String input;
@@ -87,9 +87,8 @@ public class LoginUserBean implements Serializable {
         this.loggedIn = loggedIn;
     }
 
-    public String DoLogout() {
+    public String getDoLogout() {
         this.loggedIn = false;
-
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
         //Controller erzeugen
@@ -97,8 +96,7 @@ public class LoginUserBean implements Serializable {
         //vorherige Daten (notwendige) übertragen …
         //Session anlegen und Zugriffsname (hier log) festlegen
         externalContext.getSessionMap().put("log", login);
-        doLogout = "/faces/start.xhtml";
-        return doLogout;
+        return "/faces/start.xhtml";
     }
 
     public String getPath1() {
